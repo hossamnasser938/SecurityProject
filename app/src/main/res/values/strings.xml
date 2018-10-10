@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SecurityProject</string>
+    <string name="input_field_hint">Input : Plaintext/Ciphertext</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="decrypt">decrypt</string>
+    <string name="output_field_hint">Result of Incryption/Decryption appears here</string>
+    <string name="choose_algorithm">Choose algorithm</string>
+
+    <string-array name="algorithms_array">
+        <item>@string/choose_algorithm</item>
+    </string-array>
+
+</resources>
