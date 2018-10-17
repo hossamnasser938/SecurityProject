@@ -13,6 +13,7 @@
     <string name="enter_valid_key">Enter valid Key, please</string>
     <string name="enter_algorithm">Choose Algorithm, please</string>
     <string name="encrypted">Encrypted</string>
+    <string name="decrypted">Decrypted</string>
 
     <string-array name="algorithms_array">
         <item>@string/choose_algorithm</item>

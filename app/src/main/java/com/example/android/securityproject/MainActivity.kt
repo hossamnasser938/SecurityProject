@@ -68,7 +68,48 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleDecryptButton() {
+        decrypt_button.setOnClickListener {
+            Log.d(TAG, "decrypt button clicked")
+            error_text_view.visibility = View.GONE
 
+            val ciphertext = input_field.text.toString().trim()
+            Log.d(TAG, "ciphertext : " + ciphertext)
+            val keyString = key_field.text.toString().trim()
+            Log.d(TAG, "key : " + keyString)
+
+            if (ciphertext.isEmpty()) {
+                Log.d(TAG, "empty ciphertext")
+                showError(R.string.enter_ciphertext)
+                return@setOnClickListener
+            }
+
+            if (keyString.isEmpty()) {
+                Log.d(TAG, "empty key")
+                showError(R.string.enter_key)
+                return@setOnClickListener
+            }
+
+            val keyInt = keyString.toIntOrNull()
+            if (keyInt == null) {
+                Log.d(TAG, "invalid key")
+                showError(R.string.enter_valid_key)
+                return@setOnClickListener
+            }
+
+            when (algorithms_spinner.selectedItem) {
+                resources.getString(R.string.choose_algorithm) -> {
+                    Log.d(TAG, "did not choose algorithm")
+                    showError(R.string.enter_algorithm)
+                    return@setOnClickListener
+                }
+                resources.getString(R.string.caesar_cipher) -> {
+                    Log.d(TAG, "chosen caesar cipher")
+                    val output = CaesarCipher.decrypt(ciphertext, keyInt)
+                    output_field.text = output
+                    Toast.makeText(this, R.string.decrypted, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun showError(stringId : Int){
