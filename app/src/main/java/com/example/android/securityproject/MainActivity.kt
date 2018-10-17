@@ -3,6 +3,7 @@ package com.example.android.securityproject
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,8 +25,12 @@ class MainActivity : AppCompatActivity() {
     private fun handleEncryptButton() {
         encrypt_button.setOnClickListener {
             Log.d(TAG, "encrypt button clicked")
+            error_text_view.visibility = View.GONE
+
             val plaintext = input_field.text.toString().trim()
+            Log.d(TAG, "plaintext : " + plaintext)
             val keyString = key_field.text.toString().trim()
+            Log.d(TAG, "key : " + keyString)
 
             if (plaintext.isEmpty()) {
                 Log.d(TAG, "empty plaintext")
@@ -67,6 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showError(stringId : Int){
+        error_text_view.visibility = View.VISIBLE
         error_text_view.text = resources.getString(stringId)
     }
 }

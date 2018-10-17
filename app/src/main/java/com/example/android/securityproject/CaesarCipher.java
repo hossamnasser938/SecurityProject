@@ -11,8 +11,8 @@ public class CaesarCipher {
     public static String encrypt(String plaintext, int key){
 
         StringBuilder ciphertext = new StringBuilder();
-        int currentCharacter;
-        int encryptedChar;
+        char currentCharacter;
+        char encryptedChar;
 
         //iterate through characters within plaintext
         for(int i = 0; i < plaintext.length(); i++){
@@ -21,11 +21,11 @@ public class CaesarCipher {
 
             //check if it is capital, small, or symbol
             if(currentCharacter >= Constants.A_ASCICODE && currentCharacter <= Constants.Z_ASCICODE){ //capital letter
-                encryptedChar = (currentCharacter + key - Constants.A_ASCICODE) % Constants.CHARACTERS_COUNT + Constants.A_ASCICODE;
+                encryptedChar = (char) ((currentCharacter + key - Constants.A_ASCICODE) % Constants.CHARACTERS_COUNT + Constants.A_ASCICODE);
                 ciphertext.append(encryptedChar);
             }
             else if(currentCharacter >= Constants.a_ASCICODE && currentCharacter <= Constants.z_ASCICODE){ //small letter
-                encryptedChar = (currentCharacter + key - Constants.a_ASCICODE) % Constants.CHARACTERS_COUNT + Constants.a_ASCICODE;
+                encryptedChar = (char) ((currentCharacter + key - Constants.a_ASCICODE) % Constants.CHARACTERS_COUNT + Constants.a_ASCICODE);
                 ciphertext.append(encryptedChar);
             }
             else{ //symbol
