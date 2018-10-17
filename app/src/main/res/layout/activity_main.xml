@@ -22,7 +22,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_16_margin"
-            android:hint="@string/input_field_hint" />
+            android:hint="@string/input_field_hint"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/key_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_16_margin"
+            android:hint="@string/key_field_hint"
+            android:inputType="number" />
 
         <Spinner
             android:id="@+id/algorithms_spinner"
@@ -30,6 +39,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_16_margin"
             android:entries="@array/algorithms_array"/>
+
+        <TextView
+            android:id="@+id/error_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_16_margin"
+            android:textColor="@color/red"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -1,13 +1,22 @@
 <resources>
     <string name="app_name">SecurityProject</string>
     <string name="input_field_hint">Input : Plaintext/Ciphertext</string>
+    <string name="key_field_hint">Key</string>
     <string name="encrypt">Encrypt</string>
     <string name="decrypt">decrypt</string>
     <string name="output_field_hint">Result of Incryption/Decryption appears here</string>
     <string name="choose_algorithm">Choose algorithm</string>
+    <string name="caesar_cipher">Caesar Cipher</string>
+    <string name="enter_plaintext">Enter Plaintext, please</string>
+    <string name="enter_ciphertext">Enter Ciphertext, please</string>
+    <string name="enter_key">Enter Key, please</string>
+    <string name="enter_valid_key">Enter valid Key, please</string>
+    <string name="enter_algorithm">Choose Algorithm, please</string>
+    <string name="encrypted">Encrypted</string>
 
     <string-array name="algorithms_array">
         <item>@string/choose_algorithm</item>
+        <item>@string/caesar_cipher</item>
     </string-array>
 
 </resources>
