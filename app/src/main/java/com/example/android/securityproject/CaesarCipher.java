@@ -1,7 +1,5 @@
 package com.example.android.securityproject;
 
-import android.util.Log;
-
 public class CaesarCipher {
 
     /**

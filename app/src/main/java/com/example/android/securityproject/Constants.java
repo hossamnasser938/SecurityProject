@@ -7,5 +7,6 @@ public class Constants {
     public static int a_ASCICODE = 97;
     public static int z_ASCICODE = 122;
     public static int CHARACTERS_COUNT = 26;
+    public static String ENGLISH_ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
 }
