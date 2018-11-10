@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, R.string.encrypted, Toast.LENGTH_SHORT).show()
                 }
                 resources.getString(R.string.playfair_cipher) -> {
-                    if(keyString.contains("/[^A-Za-z]/")) {
+                    if(!keyString.matches(Regex("[a-zA-Z]"))) {
                         Log.d(TAG, "invalid key")
                         showError(R.string.enter_valid_key)
                         return@setOnClickListener
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this, R.string.decrypted, Toast.LENGTH_SHORT).show()
                 }
                 resources.getString(R.string.playfair_cipher) -> {
-                    if(keyString.contains("^A-Za-z")) {
+                    if(!keyString.matches(Regex("[a-zA-Z]"))) {
                         Log.d(TAG, "invalid key")
                         showError(R.string.enter_valid_key)
                         return@setOnClickListener
