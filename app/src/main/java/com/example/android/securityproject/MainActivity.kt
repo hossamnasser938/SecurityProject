@@ -44,13 +44,6 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val keyInt = keyString.toIntOrNull()
-            if (keyInt == null) {
-                Log.d(TAG, "invalid key")
-                showError(R.string.enter_valid_key)
-                return@setOnClickListener
-            }
-
             when (algorithms_spinner.selectedItem) {
                 resources.getString(R.string.choose_algorithm) -> {
                     Log.d(TAG, "did not choose algorithm")
@@ -58,8 +51,27 @@ class MainActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 resources.getString(R.string.caesar_cipher) -> {
+                    val keyInt = keyString.toIntOrNull()
+                    if (keyInt == null) {
+                        Log.d(TAG, "invalid key")
+                        showError(R.string.enter_valid_key)
+                        return@setOnClickListener
+                    }
+
                     Log.d(TAG, "chosen caesar cipher")
                     val output = CaesarCipher.encrypt(plaintext, keyInt)
+                    output_field.text = output
+                    Toast.makeText(this, R.string.encrypted, Toast.LENGTH_SHORT).show()
+                }
+                resources.getString(R.string.playfair_cipher) -> {
+                    if(keyString.contains("/[^A-Za-z]/")) {
+                        Log.d(TAG, "invalid key")
+                        showError(R.string.enter_valid_key)
+                        return@setOnClickListener
+                    }
+
+                    Log.d(TAG, "chosen playfair cipher")
+                    val output = PlayfairCipher.encrypt(plaintext, keyString)
                     output_field.text = output
                     Toast.makeText(this, R.string.encrypted, Toast.LENGTH_SHORT).show()
                 }
@@ -89,13 +101,6 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val keyInt = keyString.toIntOrNull()
-            if (keyInt == null) {
-                Log.d(TAG, "invalid key")
-                showError(R.string.enter_valid_key)
-                return@setOnClickListener
-            }
-
             when (algorithms_spinner.selectedItem) {
                 resources.getString(R.string.choose_algorithm) -> {
                     Log.d(TAG, "did not choose algorithm")
@@ -103,8 +108,27 @@ class MainActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 resources.getString(R.string.caesar_cipher) -> {
+                    val keyInt = keyString.toIntOrNull()
+                    if (keyInt == null) {
+                        Log.d(TAG, "invalid key")
+                        showError(R.string.enter_valid_key)
+                        return@setOnClickListener
+                    }
+
                     Log.d(TAG, "chosen caesar cipher")
                     val output = CaesarCipher.decrypt(ciphertext, keyInt)
+                    output_field.text = output
+                    Toast.makeText(this, R.string.decrypted, Toast.LENGTH_SHORT).show()
+                }
+                resources.getString(R.string.playfair_cipher) -> {
+                    if(keyString.contains("/[^A-Za-z]/")) {
+                        Log.d(TAG, "invalid key")
+                        showError(R.string.enter_valid_key)
+                        return@setOnClickListener
+                    }
+
+                    Log.d(TAG, "chosen playfair cipher")
+                    val output = PlayfairCipher.decrypt(ciphertext, keyString)
                     output_field.text = output
                     Toast.makeText(this, R.string.decrypted, Toast.LENGTH_SHORT).show()
                 }
