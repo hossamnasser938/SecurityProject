@@ -75,6 +75,12 @@ class MainActivity : AppCompatActivity() {
                     output_field.text = output
                     Toast.makeText(this, R.string.encrypted, Toast.LENGTH_SHORT).show()
                 }
+                resources.getString(R.string.DES_cipher) -> {
+                    Log.d(TAG, "chosen DES cipher")
+                    val output = DESCipher.encrypt(plaintext, keyString)
+                    output_field.text = output
+                    Toast.makeText(this, R.string.encrypted, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -129,6 +135,12 @@ class MainActivity : AppCompatActivity() {
 
                     Log.d(TAG, "chosen playfair cipher")
                     val output = PlayfairCipher.decrypt(ciphertext, keyString)
+                    output_field.text = output
+                    Toast.makeText(this, R.string.decrypted, Toast.LENGTH_SHORT).show()
+                }
+                resources.getString(R.string.DES_cipher) -> {
+                    Log.d(TAG, "chosen DES cipher")
+                    val output = DESCipher.decrypt(ciphertext, keyString)
                     output_field.text = output
                     Toast.makeText(this, R.string.decrypted, Toast.LENGTH_SHORT).show()
                 }

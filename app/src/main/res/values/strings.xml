@@ -8,6 +8,7 @@
     <string name="choose_algorithm">Choose algorithm</string>
     <string name="caesar_cipher">Caesar Cipher</string>
     <string name="playfair_cipher">Playfair Cipher</string>
+    <string name="DES_cipher">DES Cipher</string>
     <string name="enter_plaintext">Enter Plaintext, please</string>
     <string name="enter_ciphertext">Enter Ciphertext, please</string>
     <string name="enter_key">Enter Key, please</string>
@@ -20,6 +21,7 @@
         <item>@string/choose_algorithm</item>
         <item>@string/caesar_cipher</item>
         <item>@string/playfair_cipher</item>
+        <item>@string/DES_cipher</item>
     </string-array>
 
 </resources>

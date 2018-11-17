@@ -11,7 +11,7 @@ public class DESCipher {
      * @return
      * @throws Exception
      */
-    private String encrypt(String plaintext, String userKey) throws Exception {
+    public static String encrypt(String plaintext, String userKey) throws Exception {
         //Generate plaintext blocks
         ArrayList<String> plaintextBlocks = generateBinaryBlocks(plaintext);
 
@@ -45,7 +45,7 @@ public class DESCipher {
      * @return
      * @throws Exception
      */
-    private String decrypt(String ciphertext, String userKey) throws Exception {
+    public static String decrypt(String ciphertext, String userKey) throws Exception {
         //Generate ciphertext blocks
         ArrayList<String> ciphertextBlocks = generateBinaryBlocks(ciphertext);
 
@@ -79,7 +79,7 @@ public class DESCipher {
      * @return
      * @throws Exception if the block's length is not correct(!=64)
      */
-    private String cipher(String block, ArrayList<String> subkeys) throws Exception {
+    private static String cipher(String block, ArrayList<String> subkeys) throws Exception {
         //Remove white spaces
         block = block.replaceAll("\\s", "");
 
@@ -126,7 +126,7 @@ public class DESCipher {
      * @return
      * @throws Exception if the block's length is not correct(!=64)
      */
-    private String decipher(String block, ArrayList<String> subkeys) throws Exception {
+    private static String decipher(String block, ArrayList<String> subkeys) throws Exception {
         //Reverse the subkeys list
         ArrayList<String> reversedList = reverseList(subkeys);
 
@@ -141,7 +141,7 @@ public class DESCipher {
      * @return
      * @throws Exception if the key has incorrect length
      */
-    private ArrayList<String> generateSubkeys(String key) throws Exception {
+    private static ArrayList<String> generateSubkeys(String key) throws Exception {
         //Remove white spaces
         key = key.replaceAll("\\s", "");
 
@@ -190,7 +190,7 @@ public class DESCipher {
      * @param subkey
      * @return
      */
-    private String fun(String right, String subkey) throws Exception {
+    private static String fun(String right, String subkey) throws Exception {
         //1-Expand the right part from 32-bit to 48-bit
         right = permutation(right, Constants.E_TABLE);
 
@@ -214,7 +214,7 @@ public class DESCipher {
      * @param permutationArray
      * @return
      */
-    private String permutation(String instanceToBePermuted, int permutationArray[]){
+    private static String permutation(String instanceToBePermuted, int permutationArray[]){
         //Remove white spaces _if exist_ from the instance to be permuted
         instanceToBePermuted = instanceToBePermuted.replaceAll("\\s", "");
 
@@ -238,7 +238,7 @@ public class DESCipher {
      * @return
      * @throws Exception if the block is not with correct length(48)
      */
-    private String fullSBoxing(String block) throws Exception{
+    private static String fullSBoxing(String block) throws Exception{
         //Declare the String Builder to append results from SBoxes
         StringBuilder builder = new StringBuilder();
 
@@ -276,7 +276,7 @@ public class DESCipher {
      * @return
      * @throws Exception if the part is not with correct length(6)
      */
-    private String partialSBoxing(String part, int SBoxNumber) throws Exception {
+    private static String partialSBoxing(String part, int SBoxNumber) throws Exception {
         //Assure that the length of the part is correct(6)
         int length = part.length();
         if(length != Constants.SBOX_INPUT_LENGTH){
@@ -304,7 +304,7 @@ public class DESCipher {
      * @param necessaryLength
      * @return
      */
-    private String addNecessaryZeros(String binaryNumber, int necessaryLength){
+    private static String addNecessaryZeros(String binaryNumber, int necessaryLength){
         //Check whether we need to add zeros or not
         int length = binaryNumber.length();
         if(length == necessaryLength){
@@ -330,7 +330,7 @@ public class DESCipher {
      * @param shiftNumbers
      * @return
      */
-    private String shiftLeft(String binaryNumber, int shiftNumbers){
+    private static String shiftLeft(String binaryNumber, int shiftNumbers){
         //Declare string builder to manipulate while shifting
         StringBuilder builder = new StringBuilder(binaryNumber);
 
@@ -354,7 +354,7 @@ public class DESCipher {
      * @return
      * @throws Exception if the two operands have different lengths
      */
-    private String xor(String operand1, String operand2) throws Exception {
+    private static String xor(String operand1, String operand2) throws Exception {
         //Remove white spaces
         operand1 = operand1.replaceAll("\\s", "");
         operand2 = operand2.replaceAll("\\s", "");
@@ -388,7 +388,7 @@ public class DESCipher {
      * @param list
      * @return
      */
-    private ArrayList<String> reverseList(ArrayList<String> list){
+    private static ArrayList<String> reverseList(ArrayList<String> list){
         //Declare array list to hold reversed items
         ArrayList<String> reversedList = new ArrayList<>();
 
@@ -411,7 +411,7 @@ public class DESCipher {
      * @param plaintext
      * @return
      */
-    private ArrayList<String> generateBinaryBlocks(String plaintext){
+    private static ArrayList<String> generateBinaryBlocks(String plaintext){
         //Declare array list to hold blocks
         ArrayList<String> blocks = new ArrayList<>();
 
@@ -446,7 +446,7 @@ public class DESCipher {
      * @param userKey
      * @return
      */
-    private String generateBinaryKey(String userKey){
+    private static String generateBinaryKey(String userKey){
         //Convert the string into its equivalent binary form
         String binaryKey = charactersToBinary(userKey);
 
@@ -463,7 +463,7 @@ public class DESCipher {
      * @param characters
      * @return
      */
-    private String charactersToBinary(String characters){
+    private static String charactersToBinary(String characters){
         //Remove white spaces
         characters = characters.replaceAll("\\s", "");
 
@@ -496,7 +496,7 @@ public class DESCipher {
      * @return
      * @throws Exception
      */
-    private String binaryToCharacters(String binary) throws Exception {
+    private static String binaryToCharacters(String binary) throws Exception {
         //Make sure that the binary string length is multiple of Block size(64)
         int length = binary.length();
         if(length % Constants.BLOCK_LENGTH != 0){
