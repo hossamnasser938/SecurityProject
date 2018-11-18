@@ -408,15 +408,28 @@ public class DESCipher {
 
     /**
      * Convert the plaintext into its binary equivalent and divide it into blocks
-     * @param plaintext
+     * @param text
      * @return
      */
-    private static ArrayList<String> generateBinaryBlocks(String plaintext){
+    private static ArrayList<String> generateBinaryBlocks(String text){
+        //Add necessary spaces to form complete blocks
+        int charactersCount = text.length();
+        int divisor = Constants.BLOCK_LENGTH / Constants.CHAR_SIZE;
+        int remainder = charactersCount % divisor;
+        if(remainder != 0){
+            int spacesCount = divisor - remainder;
+            StringBuilder builder = new StringBuilder(text);
+            for(int i = 0; i < spacesCount; i++){
+                builder.append(" ");
+            }
+            text = builder.toString();
+        }
+
         //Declare array list to hold blocks
         ArrayList<String> blocks = new ArrayList<>();
 
         //Convert the plaintext into its binary equivalent
-        String wholeBlock = charactersToBinary(plaintext);
+        String wholeBlock = charactersToBinary(text);
 
         //Calculate the length of the whole block
         int length = wholeBlock.length();
@@ -450,8 +463,17 @@ public class DESCipher {
         //Convert the string into its equivalent binary form
         String binaryKey = charactersToBinary(userKey);
 
-        //Trim the key to its correct length
-        binaryKey = binaryKey.substring(0, Constants.KEY_LENGTH);
+        //Calculate length of generated key
+        int length = binaryKey.length();
+
+        if(length < Constants.KEY_LENGTH){
+            //Add zeros to complete the required length
+            binaryKey = addNecessaryZeros(binaryKey, Constants.KEY_LENGTH);
+        }
+        else if (length > Constants.KEY_LENGTH){
+            //Trim the key to its correct length
+            binaryKey = binaryKey.substring(0, Constants.KEY_LENGTH);
+        }
 
         //Return the key
         return binaryKey;
@@ -479,7 +501,7 @@ public class DESCipher {
             String binaryEquivalent = Integer.toBinaryString(c);
 
             //Add necessary zeros
-            binaryEquivalent = addNecessaryZeros(binaryEquivalent, Constants.BYTE_SIZE);
+            binaryEquivalent = addNecessaryZeros(binaryEquivalent, Constants.CHAR_SIZE);
 
             //Append current byte
             builder.append(binaryEquivalent);
@@ -506,9 +528,9 @@ public class DESCipher {
         //Declare string builder to append characters in
         StringBuilder builder = new StringBuilder();
 
-        for(int i = 0; i < length / Constants.BYTE_SIZE; i++){
+        for(int i = 0; i < length / Constants.CHAR_SIZE; i++){
             //Get current byte
-            String byte_ = binary.substring(i * Constants.BYTE_SIZE, i * Constants.BYTE_SIZE + Constants.BYTE_SIZE);
+            String byte_ = binary.substring(i * Constants.CHAR_SIZE, i * Constants.CHAR_SIZE + Constants.CHAR_SIZE);
             //Convert it into equivalent Asci
             int byteAsci = Integer.parseInt(byte_, Constants.BINARY_BASE);
             //Append the char represented by Asci

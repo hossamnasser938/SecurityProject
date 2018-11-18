@@ -18,7 +18,7 @@ public class Constants {
     public static int NUMBER_OF_SBOXES = 8;
     public static int SBOX_INPUT_LENGTH = 6;
     public static int SBOX_OUTPUT_LENGTH = 4;
-    public static int BYTE_SIZE = 8;
+    public static int CHAR_SIZE = 8;
 
 
     public static int[] PC_1_TABLE = {57,  49,  41,  33,  25,  17,   9,
