@@ -334,7 +334,7 @@ public class DESCipher {
         //Declare string builder to manipulate while shifting
         StringBuilder builder = new StringBuilder(binaryNumber);
 
-        //Do number of shifts
+        //Do number of shifts 1010110
         for(int i = 0; i < shiftNumbers; i++){
             //Circulate char at location 0
             char charTobeShifted = builder.charAt(0);
@@ -365,7 +365,7 @@ public class DESCipher {
             throw new Exception("Cannot xoring two operands with different length");
         }
 
-        //Convert strings int integers
+        //Convert strings long integers
         Long longOperand1 = Long.parseLong(operand1, Constants.BINARY_BASE);
         long longOperand2 = Long.parseLong(operand2, Constants.BINARY_BASE);
 
@@ -411,7 +411,7 @@ public class DESCipher {
      * @param text
      * @return
      */
-    private static ArrayList<String> generateBinaryBlocks(String text){
+    private static ArrayList<String> generateBinaryBlocks(String text){   //network
         //Add necessary spaces to form complete blocks
         int charactersCount = text.length();
         int divisor = Constants.BLOCK_LENGTH / Constants.CHAR_SIZE;
@@ -486,9 +486,6 @@ public class DESCipher {
      * @return
      */
     private static String charactersToBinary(String characters){
-        //Remove white spaces
-        characters = characters.replaceAll("\\s", "");
-
         //Declare a string builder to hold the binary equivalent to the string characters
         StringBuilder builder = new StringBuilder();
 
@@ -503,7 +500,7 @@ public class DESCipher {
             //Add necessary zeros
             binaryEquivalent = addNecessaryZeros(binaryEquivalent, Constants.CHAR_SIZE);
 
-            //Append current byte
+            //Append current char
             builder.append(binaryEquivalent);
         }
 
