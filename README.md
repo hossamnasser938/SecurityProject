@@ -1,7 +1,7 @@
 # SecurityProject
 
 ## Overview
-* This project contains implementation to common encryption/decryption algorithms including:
+* A mobile application that contains implementation to common encryption/decryption algorithms including:
     * Caesar Cipher.
     * Playfair Cipher.
     * DES Cipher.
